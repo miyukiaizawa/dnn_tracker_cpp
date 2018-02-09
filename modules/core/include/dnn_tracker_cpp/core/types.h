@@ -58,7 +58,7 @@ public:
                                                    threshold,
                                                    use_mean);
     erase_unvalid_objects(frame_basis_objects);
-    return detector_.tracking(frame_basis_objects, frame_story);
+    return detector_.tracking_id(frame_basis_objects, frame_story);
   }
 
 

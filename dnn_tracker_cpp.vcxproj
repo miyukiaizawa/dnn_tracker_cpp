@@ -111,8 +111,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)source\3rdparty\lib\$(Platform)\$(Configuration);$(SolutionDir)source\build\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>akstdutilsd.lib;opencv_world320d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)source\3rdparty\lib\$(Platform)\$(Configuration);$(SolutionDir)source\build\lib\$(Platform)\$(Configuration);$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yolo_cpp_dll.lib;akstdutilsd.lib;opencv_world320d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy $(ProjectDir)include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
@@ -161,8 +161,8 @@ xcopy $(ProjectDir)modules\target\include\* $(SolutionDir)source\build\include\$
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)source\3rdparty\lib\$(Platform)\$(Configuration);$(SolutionDir)source\build\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>akstdutils.lib;opencv_world320.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)source\3rdparty\lib\$(Platform)\$(Configuration);$(SolutionDir)source\build\lib\$(Platform)\$(Configuration);$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yolo_cpp_dll.lib;akstdutils.lib;opencv_world320.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy $(ProjectDir)include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
