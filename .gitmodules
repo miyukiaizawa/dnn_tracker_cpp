@@ -1,3 +1,6 @@
 [submodule "source/akstdutils"]
 	path = source/akstdutils
 	url = https://aizawa_miyuki@bitbucket.org/aizawa_miyuki/akstdutils.git
+[submodule "source/darknet"]
+	path = source/darknet
+	url = https://github.com/aizak-vare/darknet.git
