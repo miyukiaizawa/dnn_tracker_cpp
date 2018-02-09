@@ -34,7 +34,7 @@ namespace dnn {
 namespace core {
 
 #ifdef DARKNET
-using bbox_t = bbox_t;
+using bbox_t = ::bbox_t;
 
 class object_detector {
 public:

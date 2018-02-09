@@ -250,11 +250,6 @@ xcopy $(ProjectDir)modules\target\include\* $(SolutionDir)source\build\include\$
     <ClCompile Include="modules\target\src\target_object.cpp" />
     <ClCompile Include="modules\target\src\target_object_judgementer.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\darknet\build\darknet\yolo_cpp_dll.vcxproj">
-      <Project>{4cf5694f-12a5-4012-8d94-9a0915e9feb5}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

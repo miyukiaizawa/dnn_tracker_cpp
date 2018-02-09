@@ -169,8 +169,8 @@ Define_Property(int, boundary_box, track_id,
 { return box_.track_id = value; })
 
 Define_Property(int, boundary_box, count,
-{ return box_.count; },
-{ return box_.count = value; })
+{ return box_.frames_counter; },
+{ return box_.frames_counter = value; })
 
 Define_Property(float, boundary_box, prob,
 { return box_.prob; },
