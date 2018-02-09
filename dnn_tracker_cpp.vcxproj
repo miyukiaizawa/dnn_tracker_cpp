@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1FB9EE87-DD8B-49F7-BAB3-E5933F085536}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>dnn_tracker_cpp</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)output\bin\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)output\bin\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;DNN_TRACKER_CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>OPENCV;DARKNET;DNN_TRACKER_CPP_EXPORTS;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)modules\core\include;$(ProjectDir)modules\detector\include;$(ProjectDir)modules\draw\include;$(ProjectDir)modules\info\include;$(ProjectDir)modules\object\include;$(ProjectDir)modules\region\include;$(ProjectDir)modules\target\include;$(SolutionDir)source\build\include\akstdutils;$(SolutionDir)source\darknet\src;$(SolutionDir)source\3rdparty\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819;</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)source\3rdparty\lib\$(Platform)\$(Configuration);$(SolutionDir)source\build\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>akstdutilsd.lib;opencv_world320d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy $(ProjectDir)include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\core\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\detector\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\draw\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\info\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\object\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\region\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\target\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;DNN_TRACKER_CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>OPENCV;DARKNET;DNN_TRACKER_CPP_EXPORTS;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)modules\core\include;$(ProjectDir)modules\detector\include;$(ProjectDir)modules\draw\include;$(ProjectDir)modules\info\include;$(ProjectDir)modules\object\include;$(ProjectDir)modules\region\include;$(ProjectDir)modules\target\include;$(SolutionDir)source\build\include\akstdutils;$(SolutionDir)source\darknet\src;$(SolutionDir)source\3rdparty\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819;</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)source\3rdparty\lib\$(Platform)\$(Configuration);$(SolutionDir)source\build\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>akstdutils.lib;opencv_world320.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy $(ProjectDir)include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\core\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\detector\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\draw\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\info\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\object\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\region\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+xcopy $(ProjectDir)modules\target\include\* $(SolutionDir)source\build\include\$(ProjectName) /D /E /I /H /Y
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\dnn_tracker_cpp\dnntracker_cpp.h" />
+    <ClInclude Include="modules\core\include\dnn_tracker_cpp\core\rw_property.h" />
+    <ClInclude Include="modules\core\include\dnn_tracker_cpp\core\utils.h" />
+    <ClInclude Include="modules\detector\include\dnn_tracker_cpp\detector\dependent_object_tracker.h" />
+    <ClInclude Include="modules\detector\include\dnn_tracker_cpp\detector\dnn_object_detector.h" />
+    <ClInclude Include="include\dnn_tracker_cpp\core.h" />
+    <ClInclude Include="modules\core\include\dnn_tracker_cpp\core\types.h" />
+    <ClInclude Include="include\dnn_tracker_cpp\draw.h" />
+    <ClInclude Include="modules\draw\include\dnn_tracker_cpp\draw\background_area.h" />
+    <ClInclude Include="modules\draw\include\dnn_tracker_cpp\draw\max_size.h" />
+    <ClInclude Include="modules\draw\include\dnn_tracker_cpp\draw\object_color.h" />
+    <ClInclude Include="modules\draw\include\dnn_tracker_cpp\draw\object_drawer.h" />
+    <ClInclude Include="modules\draw\include\dnn_tracker_cpp\draw\object_show_info.h" />
+    <ClInclude Include="modules\draw\include\dnn_tracker_cpp\draw\text_area.h" />
+    <ClInclude Include="include\dnn_tracker_cpp\info.h" />
+    <ClInclude Include="modules\info\include\dnn_tracker_cpp\info\detection_info.h" />
+    <ClInclude Include="include\dnn_tracker_cpp\object.h" />
+    <ClInclude Include="modules\object\include\dnn_tracker_cpp\object\child_object.h" />
+    <ClInclude Include="modules\object\include\dnn_tracker_cpp\object\dependent_object.h" />
+    <ClInclude Include="modules\object\include\dnn_tracker_cpp\object\dependent_object_factory.h" />
+    <ClInclude Include="modules\object\include\dnn_tracker_cpp\object\dependent_object_ptrs.h" />
+    <ClInclude Include="modules\object\include\dnn_tracker_cpp\object\object_names.h" />
+    <ClInclude Include="modules\object\include\dnn_tracker_cpp\object\object_names_impl.h" />
+    <ClInclude Include="modules\object\include\dnn_tracker_cpp\object\parent_object.h" />
+    <ClInclude Include="include\dnn_tracker_cpp\region.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\boundary_box.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\collision.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\collision_generator.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\contours.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\convexhull.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\direction.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\distance.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\inclusive_box.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\track_box.h" />
+    <ClInclude Include="modules\region\include\dnn_tracker_cpp\region\track_boxes.h" />
+    <ClInclude Include="include\dnn_tracker_cpp\target.h" />
+    <ClInclude Include="modules\target\include\dnn_tracker_cpp\target\target_direction.h" />
+    <ClInclude Include="modules\target\include\dnn_tracker_cpp\target\target_object.h" />
+    <ClInclude Include="modules\target\include\dnn_tracker_cpp\target\target_object_judgementer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="modules\core\src\utils.cpp" />
+    <ClCompile Include="modules\detector\src\dependent_object_tracker.cpp" />
+    <ClCompile Include="modules\detector\src\dnn_object_detector.cpp" />
+    <ClCompile Include="modules\draw\src\background_area.cpp" />
+    <ClCompile Include="modules\draw\src\max_size.cpp" />
+    <ClCompile Include="modules\draw\src\object_color.cpp" />
+    <ClCompile Include="modules\draw\src\object_drawer.cpp" />
+    <ClCompile Include="modules\draw\src\object_show_info.cpp" />
+    <ClCompile Include="modules\draw\src\text_area.cpp" />
+    <ClCompile Include="modules\info\src\detection_info.cpp" />
+    <ClCompile Include="modules\object\src\child_object.cpp" />
+    <ClCompile Include="modules\object\src\dependent_object.cpp" />
+    <ClCompile Include="modules\object\src\dependent_object_factory.cpp" />
+    <ClCompile Include="modules\object\src\dependent_object_ptrs.cpp" />
+    <ClCompile Include="modules\object\src\parent_object.cpp" />
+    <ClCompile Include="modules\region\src\boundary_box.cpp" />
+    <ClCompile Include="modules\region\src\collision.cpp" />
+    <ClCompile Include="modules\region\src\collision_generator.cpp" />
+    <ClCompile Include="modules\region\src\contours.cpp" />
+    <ClCompile Include="modules\region\src\convexhull.cpp" />
+    <ClCompile Include="modules\region\src\direction.cpp" />
+    <ClCompile Include="modules\region\src\distance.cpp" />
+    <ClCompile Include="modules\region\src\inclusive_box.cpp" />
+    <ClCompile Include="modules\region\src\track_box.cpp" />
+    <ClCompile Include="modules\region\src\track_boxes.cpp" />
+    <ClCompile Include="modules\target\src\target_direction.cpp" />
+    <ClCompile Include="modules\target\src\target_object.cpp" />
+    <ClCompile Include="modules\target\src\target_object_judgementer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\darknet\build\darknet\yolo_cpp_dll.vcxproj">
+      <Project>{4cf5694f-12a5-4012-8d94-9a0915e9feb5}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
