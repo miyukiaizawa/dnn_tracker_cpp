@@ -114,7 +114,7 @@ make_outer() {
   track_box box = inner();
   for (auto& child : children()) {
     box.merge(child);
-}
+  }
   return box;
 #endif
   return inner();
@@ -132,14 +132,19 @@ can_has_children() {
 }
 
 std::tstring
-make_children_names(parent_object& parent, object_names& object_names) {
+make_children_names(parent_object& parent, object_names& object_names, bool show_details) {
   std::tstringstream tss;
   for (auto& child : parent.children()) {
     object_names::name_t child_name;
     if (!object_names.get(child.current_pos(), child_name)) {
       continue;
     }
-    tss << child_name << _T("[No.") << child.TrackId << _T("] ");
+
+    tss << child_name << _T(" ");
+
+    if (show_details) {
+      tss << _T("[No.") << child.TrackId << _T("] ");
+    }
   }
   return tss.str();
 }

@@ -7,13 +7,13 @@ namespace dnn {
 
 class object_show_info {
 public:
-  DNNTRR_API object_show_info(dependent_object_ptr& obj, object_names& obj_names);
+  DNNTRR_API object_show_info(dependent_object_ptr& obj, object_names& obj_names, bool show_details = false);
 
 private:
-  void make_messages(dependent_object_ptr& obj, object_names& obj_names);
-  void make_object_name(region::boundary_box& inner, object_names& obj_names, bool is_certain_count);
+  void make_messages(dependent_object_ptr& obj, object_names& obj_names, bool show_details = false);
+  void make_object_name(region::boundary_box& inner, object_names& obj_names, bool is_certain_count, bool show_details = false);
   void make_count_info(region::boundary_box& inner);
-  void make_dependency(dependent_object_ptr& obj, object_names& obj_names);
+  void make_dependency(dependent_object_ptr& obj, object_names& obj_names, bool show_details = true);
 
 
 public:

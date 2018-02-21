@@ -34,7 +34,7 @@ private:
 };
 using parent_object_ptr = std::shared_ptr<parent_object>;
 
-DNNTRR_API std::tstring make_children_names(parent_object& parent, object_names& object_names);
+DNNTRR_API std::tstring make_children_names(parent_object& parent, object_names& object_names, bool show_details);
 
 DNNTRR_API parent_object_ptr to_parent_object(dependent_object_ptr object);
 

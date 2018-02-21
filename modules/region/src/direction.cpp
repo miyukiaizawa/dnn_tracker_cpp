@@ -85,13 +85,13 @@ direction::state
 direction::
 calc_direction(cv::Point first_pt, cv::Point currnt_pt) {
   state_t dst = static_cast<state_t>(state::stop);
-  if (currnt_pt.x > first_pt.x) {
+  if (first_pt.x < currnt_pt.x) {
     dst |= static_cast<state_t>(state::right);
   }
   if (currnt_pt.x < first_pt.x) {
     dst |= static_cast<state_t>(state::left);
   }
-  if (currnt_pt.y > first_pt.y) {
+  if (first_pt.y < currnt_pt.y) {
     dst |= static_cast<state_t>(state::down);
   }
   if (currnt_pt.y < first_pt.y) {

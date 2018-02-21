@@ -126,9 +126,11 @@ detect(cv::Mat &src, cv::Size init_size) {
   //wrapper detector
   auto boundary_boxes = region::make_boundaryboxes(tracked_objs);
   auto objects = tracker.tracking(boundary_boxes, object_names, checker.targets());
+
+  auto now = std::chrono::system_clock::now();
   bool found_target = checker.judge_detection_targets(objects, object_names);
 
-  return detection_info(objects, std::chrono::system_clock::now(), found_target);
+  return detection_info(objects, now, found_target);
   //return detection_info();
 }
 

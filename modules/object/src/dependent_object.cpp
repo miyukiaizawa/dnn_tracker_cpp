@@ -19,7 +19,8 @@ alert_info::
 alert_info() :
   is_unchecked(true),
   is_alerted(false),
-  detection_time() {}
+  detection_time(),
+  state(alert_info::detection_state::none) {}
 
 
 dependent_object::
@@ -214,6 +215,10 @@ Define_Property(bool, dependent_object, is_alerted,
 { return alert_info_.is_alerted; },
 { return alert_info_.is_alerted = value; })
 
+Define_Property(dependent_object::alert_info::detection_state, dependent_object, state,
+{ return alert_info_.state; },
+{ return alert_info_.state = value; })
+
 Define_Property(std::chrono::time_point<std::chrono::system_clock>, dependent_object, detection_time,
 { return alert_info_.detection_time; },
 { return alert_info_.detection_time = value; })
@@ -243,6 +248,7 @@ set_properties() {
   DetectionTime(this);
   Outer(this);
   Inner(this);
+  State(this);
 }
 
 

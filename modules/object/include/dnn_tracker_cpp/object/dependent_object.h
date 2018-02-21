@@ -38,10 +38,15 @@ public:
   };
 
   struct alert_info {
+    enum class detection_state {
+      none, firsttime, continuation
+    };
+
     DNNTRR_API alert_info();
     bool is_unchecked;//初回の検出か
     bool is_alerted;//検出済みか
     std::chrono::time_point<std::chrono::system_clock> detection_time; //検出確定時刻
+    detection_state state; //検出状態
   };
 
 public:
@@ -101,6 +106,7 @@ public: //property
   Declear_Properties(bool, dependent_object, should_alert, ShouldAlert);
   Declear_Properties(bool, dependent_object, is_unchecked, isUnChecked);
   Declear_Properties(bool, dependent_object, is_alerted, IsAlerted);
+  Declear_Properties(alert_info::detection_state, dependent_object, state, State);
   Declear_Properties(std::chrono::time_point<std::chrono::system_clock>, dependent_object, detection_time, DetectionTime);
 
   Declear_Properties(region::track_box, dependent_object, _outer, Outer);

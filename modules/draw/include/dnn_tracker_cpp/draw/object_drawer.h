@@ -15,6 +15,7 @@ public:
                               object_names& obj_names,
                               target_objects& targets,
                               text_area& area,
+                              bool show_details = true,
                               cv::Size arrow_size = cv::Size(5, 10));
 
 private:
@@ -35,7 +36,8 @@ private:
                         object_show_info& info,
                         text_area &area,
                         background_area& bg,
-                        cv::Scalar color);
+                        cv::Scalar color,
+                        bool show_details = true);
 };
 
 }
@@ -46,6 +48,7 @@ DNNTRR_API void draw_boxes(cv::Mat& src,
                            dependent_object_ptrs& objects,
                            object_names& obj_names,
                            target_objects& targets,
+                           bool show_details = true,
                            text_area & area
                            = text_area(cv::FONT_HERSHEY_COMPLEX_SMALL, 1.2, 2));
 

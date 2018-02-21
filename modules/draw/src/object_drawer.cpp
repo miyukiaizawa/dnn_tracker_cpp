@@ -94,6 +94,7 @@ draw(cv::Mat &src,
      object_names& obj_names,
      target_objects& targets,
      text_area& area,
+     bool show_details,
      cv::Size arrow_size) {
 
   if (!can_show(object, objects)) {
@@ -103,14 +104,14 @@ draw(cv::Mat &src,
   auto outer = object->outer();
   auto inner = object->inner();
 
-  object_show_info info(object, obj_names);
+  object_show_info info(object, obj_names, show_details);
   background_area bg(src, inner(), max_size(area(info), cv::Size(outer()().w, 0))());
   object_color color = make_color(object, objects, obj_names, targets);
 
   draw_boundary(src, outer(), color(), area.thickness);
   draw_trace_arrow(src, outer.current_pos, outer.first_pos, arrow_size, color(), area.thickness);
   draw_info_background(src, bg, color());
-  draw_info(src, info, area, bg, cv::Scalar::all(0));
+  draw_info(src, info, area, bg, cv::Scalar::all(0), show_details);
 
 }
 
@@ -153,7 +154,8 @@ draw_info(cv::Mat &src,
           object_show_info& info,
           text_area &area,
           background_area& bg,
-          cv::Scalar color) {
+          cv::Scalar color,
+          bool show_details) {
   auto text_pos = bg.inner_lt(area);
   text_pos.y += 3;
   if (info.dependency.empty()) {
@@ -161,7 +163,7 @@ draw_info(cv::Mat &src,
   }
 
   cv::putText(src,
-              std::to_string(info.obj_name), 
+              std::to_string(info.obj_name),
               text_pos,
               area.font, area.font_scale,
               color, area.thickness);
@@ -170,14 +172,16 @@ draw_info(cv::Mat &src,
                                   area.font,
                                   area.font_scale,
                                   area.thickness, 0);
-  cv::putText(src,
-              std::to_string(info.count),
-              cv::Point((int)(text_pos.x + txt_size.width),
-              (int)text_pos.y),
-              area.font,
-              area.font_scale,
-              color,
-              area.thickness);
+  if (show_details) {
+    cv::putText(src,
+                std::to_string(info.count),
+                cv::Point((int)(text_pos.x + txt_size.width),
+                (int)text_pos.y),
+                area.font,
+                area.font_scale,
+                color,
+                area.thickness);
+  }
   text_pos.y += area.next_line_offset();
   cv::putText(src,
               std::to_string(info.dependency),
@@ -186,7 +190,6 @@ draw_info(cv::Mat &src,
               area.font_scale,
               color,
               area.thickness);
-
 }
 
 }
@@ -197,6 +200,7 @@ void draw_boxes(cv::Mat& src,
                 dependent_object_ptrs& objects,
                 object_names& obj_names,
                 target_objects& targets,
+                bool show_details,
                 text_area & area) {
 
   for (auto &object : objects) {
@@ -205,7 +209,8 @@ void draw_boxes(cv::Mat& src,
                         objects,
                         obj_names,
                         targets,
-                        area);
+                        area,
+                        show_details);
   }
 }
 

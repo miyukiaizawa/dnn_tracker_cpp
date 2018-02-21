@@ -91,11 +91,16 @@ clear_reference() {
 }
 
 std::tstring
-make_parent_name(child_object& child, object_names& object_names) {
+make_parent_name(child_object& child, object_names& object_names, bool show_details) {
   std::tstringstream tss;
   object_names::name_t parent_name;
   if (object_names.get(child.parent().current_pos(), parent_name)) {
-    tss << parent_name << _T("[No.") << child.parent().TrackId << _T("]");
+
+    tss << parent_name << _T(" ");
+    
+    if (show_details) {
+      tss << _T("[No.") << child.parent().TrackId << _T("]");
+    }
   }
   return tss.str();
 }

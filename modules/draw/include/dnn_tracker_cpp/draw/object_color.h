@@ -19,7 +19,7 @@ private:
   cv::Scalar select_color(dependent_object_ptr& object,
                           target_object& target,
                           cv::Scalar alert_color = cv::Scalar(0, 0, 180),
-                          cv::Scalar safe_color = cv::Scalar(0, 0, 180));
+                          cv::Scalar safe_color = cv::Scalar(180, 0, 0));
 
 public:
   const static object_color no_color;
