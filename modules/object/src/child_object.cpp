@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/object/child_object.h"
+﻿#include "dnn_tracker_cpp/object/child_object.h"
 #include "dnn_tracker_cpp/object/dependent_object_ptrs.h"
 
 namespace dnn {
@@ -15,11 +15,34 @@ child_object(region::inclusive_box box) : dependent_object(box) {}
 child_object::
 ~child_object() {}
 
+child_object::
+child_object(child_object* obj) :
+  dependent_object(obj),
+  parent_(obj->parent_) {}
+
+child_object&
+child_object::
+operator = (child_object* obj) {
+  object_info_ = obj->object_info_;
+  alert_info_ = obj->alert_info_;
+  self_ = obj->self_;
+  appearance_ = obj->appearance_;
+  parent_ = obj->parent_;
+  return (*this);
+}
+
 region::track_box&
 child_object::
 parent() {
   return parent_;
 }
+
+const region::track_box&
+child_object::
+parent() const {
+  return parent_;
+}
+
 
 bool
 child_object::
@@ -42,14 +65,14 @@ find_reference(object_ptrs_t& objects,
 bool
 child_object::
 can_add_reference(object_ptrs_t& objects) {
-  remove_unvalid_reference(objects);
+  //remove_unvalid_reference(objects);
   return parent_.empty();
 }
 
 bool
 child_object::
 overwirte_referene(dependent_object* object) {
-  parent() = object->inner();
+  parent_ = object->inner();
   return true;
 }
 
@@ -79,8 +102,8 @@ child_object::
 make_outer() {
   //return parent();
   region::track_box box = inner();
-  box().ObjectId = parent()().ObjectId;
-  box().TrackId = parent()().TrackId;
+  //box().ObjectId = parent()().ObjectId;
+  //box().TrackId = parent()().TrackId;
   return box;
 }
 
@@ -91,13 +114,15 @@ clear_reference() {
 }
 
 std::tstring
-make_parent_name(child_object& child, object_names& object_names, bool show_details) {
+make_parent_name(const child_object& child,
+                 const object_names& object_names,
+                 bool show_details) {
   std::tstringstream tss;
   object_names::name_t parent_name;
   if (object_names.get(child.parent().current_pos(), parent_name)) {
 
     tss << parent_name << _T(" ");
-    
+
     if (show_details) {
       tss << _T("[No.") << child.parent().TrackId << _T("]");
     }

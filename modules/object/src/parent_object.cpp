@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/object/parent_object.h"
+﻿#include "dnn_tracker_cpp/object/parent_object.h"
 #include "dnn_tracker_cpp/object/dependent_object_ptrs.h"
 
 namespace dnn {
@@ -21,10 +21,33 @@ parent_object(region::inclusive_box box, bool _can_has_children) :
 parent_object::
 ~parent_object() {}
 
+parent_object::
+parent_object(parent_object* obj) :
+  dependent_object(obj),
+  children_(obj->children_),
+  can_has_children_(obj->can_has_children_) {}
+
+parent_object&
+parent_object::
+operator = (parent_object* obj) {
+  object_info_ = obj->object_info_;
+  alert_info_ = obj->alert_info_;
+  self_ = obj->self_;
+  appearance_ = obj->appearance_;
+  children_ = obj->children_;
+  can_has_children_ = obj->can_has_children_;
+  return (*this);
+}
 
 region::track_boxes&
 parent_object::
 children() {
+  return children_;
+}
+
+const region::track_boxes&
+parent_object::
+children() const {
   return children_;
 }
 
@@ -59,7 +82,7 @@ find_reference(object_ptrs_t& objects,
 bool
 parent_object::
 can_add_reference(object_ptrs_t& objects) {
-  remove_unvalid_reference(objects);
+  //remove_unvalid_reference(objects);
   return children().empty() || can_has_children();
 }
 
@@ -114,7 +137,7 @@ make_outer() {
   track_box box = inner();
   for (auto& child : children()) {
     box.merge(child);
-  }
+}
   return box;
 #endif
   return inner();
@@ -132,7 +155,9 @@ can_has_children() {
 }
 
 std::tstring
-make_children_names(parent_object& parent, object_names& object_names, bool show_details) {
+make_children_names(const parent_object& parent,
+                    const object_names& object_names,
+                    bool show_details) {
   std::tstringstream tss;
   for (auto& child : parent.children()) {
     object_names::name_t child_name;

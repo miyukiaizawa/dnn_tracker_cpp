@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/detector/dependent_object_tracker.h"
+﻿#include "dnn_tracker_cpp/detector/dependent_object_tracker.h"
 
 namespace dnn {
 
@@ -106,6 +106,14 @@ dependent_object_tracker::
 update_references() {
   dependent_object_ptrs children, parents;
   sepalete_objects(objects, children, parents);
+
+  for (auto& child : children) {
+    child->remove_unvalid_reference(parents);
+  }
+  for (auto& parent : parents) {
+    parent->remove_unvalid_reference(children);
+  }
+
   for (auto& child : children) {
     child->update_outer(parents);
   }

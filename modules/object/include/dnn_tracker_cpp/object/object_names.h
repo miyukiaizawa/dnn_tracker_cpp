@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef __DNN_TRACKER_CPP_OBJECT_OBJECT_NAMES_H__
 #define __DNN_TRACKER_CPP_OBJECT_OBJECT_NAMES_H__
 #include "dnn_tracker_cpp/region.h"

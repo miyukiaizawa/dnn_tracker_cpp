@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef __DNN_TRACKER_CPP_TYPES_H__
 #define __DNN_TRACKER_CPP_TYPES_H__
 

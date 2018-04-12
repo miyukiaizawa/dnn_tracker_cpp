@@ -1,4 +1,4 @@
-#ifndef __DNN_TRACKER_CPP_CORE_H__
+﻿#ifndef __DNN_TRACKER_CPP_CORE_H__
 #define __DNN_TRACKER_CPP_CORE_H__
 
 #include "dnn_tracker_cpp/core/types.h"

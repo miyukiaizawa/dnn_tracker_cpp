@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/target/target_object_judgementer.h"
+﻿#include "dnn_tracker_cpp/target/target_object_judgementer.h"
 
 namespace dnn {
 
@@ -31,7 +31,7 @@ bool
 target_object_judgementer::
 is_certain_probability(dependent_object_ptr& object,
                        const target_object& target) {
-  return object->outer().Prob >= target.probability;
+  return object->IsCertainProbability = (object->outer().Prob >= target.probability);
 }
 
 bool
@@ -63,8 +63,8 @@ bool
 target_object_judgementer::
 is_valid_move_direction(dependent_object_ptr& object,
                         const target_object& target) {
-  return object->IsValidMoveDirection
-    = target.direction.valid_direction(object->outer().direction);
+  return object->IsValidMoveDirection 
+    = target.direction().valid_direction(object->outer().direction());
 }
 
 bool
@@ -73,7 +73,9 @@ judge_detection_targets(dependent_object_ptrs& objects,
                         const object_names& _object_names) {
   bool ret = false;
   for (auto& object : objects) {
-    ret |= judge_detection_target(object, _object_names);
+    if (judge_detection_target(object, _object_names)) {
+      ret = true;
+    }
   }
   return ret;
 }
@@ -84,8 +86,6 @@ judge_detection_target(dependent_object_ptr& object,
                        const object_names& _object_names) {
 
   //* do not change following check order
-
-  object->ShouldAlert = false;
 
   dnn::target_object target;
   if (!find_target_object(_object_names[object->outer()], target)) {
@@ -100,30 +100,33 @@ judge_detection_target(dependent_object_ptr& object,
     return false;
   }
 
+  bool should_alert = true;
   if (!is_certain_count_of_apperance(object, target)) {
-    return false;
+    should_alert = false;
   }
 
   if (!is_certain_move_distance(object, target)) {
-    return false;
+    should_alert = false;
   }
   is_stationary_object(object, target);
 
+  if (!is_certain_probability(object, target)) {
+    should_alert = false;
+  }
+
+  object->IsConfirmed = should_alert;
+
   if (!is_valid_move_direction(object, target)) {
-    return false;
+    should_alert = false;
   }
 
   if (object->should_ignore()) {
-    return false;
+    should_alert = false;
   }
 
-  if (!is_certain_probability(object, target)) {
-    return false;
-  }
+  object->ShouldAlert = should_alert;
 
-  object->ShouldAlert = true;
-
-  return true;
+  return should_alert;
 }
 
 target_objects&

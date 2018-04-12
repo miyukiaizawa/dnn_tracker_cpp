@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/region/direction.h"
+﻿#include "dnn_tracker_cpp/region/direction.h"
 
 namespace dnn {
 namespace region {
@@ -32,6 +32,13 @@ void
 direction::
 operator=(state_t v) {
   state_ = static_cast<state>(v);
+}
+
+direction&
+direction::
+operator =(const direction& v) {
+  this->state_ = v.state_;
+  return (*this);
 }
 
 direction::state&
@@ -81,22 +88,37 @@ operator ==(const direction& v) {
   return static_cast<state_t>(v.state_) == static_cast<state_t>(state_);
 }
 
+bool
+direction::
+operator <(const direction& v) const {
+  return (state_ < v.state_);
+}
+
+
 direction::state
 direction::
 calc_direction(cv::Point first_pt, cv::Point currnt_pt) {
-  state_t dst = static_cast<state_t>(state::stop);
+  state_t dst = static_cast<state_t>(state::none);
   if (first_pt.x < currnt_pt.x) {
     dst |= static_cast<state_t>(state::right);
   }
-  if (currnt_pt.x < first_pt.x) {
+  else if (currnt_pt.x < first_pt.x) {
     dst |= static_cast<state_t>(state::left);
   }
+  else {
+    dst |= static_cast<state_t>(state::hstop);
+  }
+
   if (first_pt.y < currnt_pt.y) {
     dst |= static_cast<state_t>(state::down);
   }
-  if (currnt_pt.y < first_pt.y) {
+  else if (currnt_pt.y < first_pt.y) {
     dst |= static_cast<state_t>(state::up);
   }
+  else {
+    dst |= static_cast<state_t>(state::vstop);
+  }
+
   return static_cast<state>(dst);
 }
 

@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/object/dependent_object.h"
+﻿#include "dnn_tracker_cpp/object/dependent_object.h"
 #include "dnn_tracker_cpp/object/dependent_object_ptrs.h"
 
 namespace dnn {
@@ -8,6 +8,7 @@ object_info::
 object_info() :
   is_certain_count(false),
   is_certain_distance(false),
+  is_certain_probability(false),
   is_confirmed(false),
   is_valid_move_direction(false),
   can_show(false),
@@ -15,13 +16,63 @@ object_info() :
   should_alert(false) {}
 
 dependent_object::
+object_info::
+object_info(object_info& info) :
+  is_certain_count(info.is_certain_count),
+  is_certain_distance(info.is_certain_distance),
+  is_certain_probability(info.is_certain_probability),
+  is_confirmed(info.is_confirmed),
+  is_valid_move_direction(info.is_valid_move_direction),
+  can_show(info.can_show),
+  can_alert(info.can_alert),
+  should_alert(info.should_alert) {}
+
+dependent_object::
+object_info&
+dependent_object::
+object_info::
+operator = (object_info& info) {
+  is_certain_count = info.is_certain_count;
+  is_certain_distance = info.is_certain_distance;
+  is_certain_probability = info.is_certain_probability;
+  is_confirmed = info.is_confirmed;
+  is_valid_move_direction = info.is_valid_move_direction;
+  can_show = info.can_show;
+  can_alert = info.can_alert;
+  should_alert = info.should_alert;
+  return (*this);
+}
+
+dependent_object::
 alert_info::
 alert_info() :
   is_unchecked(true),
   is_alerted(false),
+  is_notifiable(true),
   detection_time(),
   state(alert_info::detection_state::none) {}
 
+dependent_object::
+alert_info::
+alert_info(alert_info& info) :
+  is_unchecked(info.is_unchecked),
+  is_alerted(info.is_alerted),
+  is_notifiable(info.is_notifiable),
+  detection_time(info.detection_time),
+  state(info.state) {}
+
+dependent_object::
+alert_info&
+dependent_object::
+alert_info::
+operator = (alert_info& info) {
+  is_unchecked = info.is_unchecked;
+  is_alerted = info.is_alerted;
+  is_notifiable = info.is_notifiable;
+  detection_time = info.detection_time;
+  state = info.state;
+  return (*this);
+}
 
 dependent_object::
 dependent_object() :
@@ -46,6 +97,24 @@ dependent_object(region::inclusive_box box) :
 
 dependent_object::
 ~dependent_object() {}
+
+dependent_object::
+dependent_object(dependent_object* obj) :
+  object_info_(obj->object_info_),
+  alert_info_(obj->alert_info_),
+  self_(obj->self_),
+  appearance_(obj->appearance_) {}
+
+dependent_object&
+dependent_object::
+operator = (dependent_object* obj) {
+  object_info_ = obj->object_info_;
+  alert_info_ = obj->alert_info_;
+  self_ = obj->self_;
+  appearance_ = obj->appearance_;
+  return (*this);
+}
+
 
 bool
 dependent_object::
@@ -183,6 +252,10 @@ Define_Property(bool, dependent_object, is_certain_distance,
 { return object_info_.is_certain_distance; },
 { return object_info_.is_certain_distance = value; })
 
+Define_Property(bool, dependent_object, is_certain_probability,
+{ return object_info_.is_certain_probability; },
+{ return object_info_.is_certain_probability = value; })
+
 Define_Property(bool, dependent_object, is_confirmed,
 { return object_info_.is_confirmed; },
 { return object_info_.is_confirmed = value; })
@@ -215,6 +288,10 @@ Define_Property(bool, dependent_object, is_alerted,
 { return alert_info_.is_alerted; },
 { return alert_info_.is_alerted = value; })
 
+Define_Property(bool, dependent_object, is_notifiable,
+{ return alert_info_.is_notifiable; },
+{ return alert_info_.is_notifiable = value; })
+
 Define_Property(dependent_object::alert_info::detection_state, dependent_object, state,
 { return alert_info_.state; },
 { return alert_info_.state = value; })
@@ -237,6 +314,7 @@ dependent_object::
 set_properties() {
   IsCertainCount(this);
   IsCertain_Distance(this);
+  IsCertainProbability(this);
   IsConfirmed(this);
   IsValidMoveDirection(this);
   IsStationary(this);
@@ -245,6 +323,7 @@ set_properties() {
   ShouldAlert(this);
   isUnChecked(this);
   IsAlerted(this);
+  IsNotifiable(this);
   DetectionTime(this);
   Outer(this);
   Inner(this);

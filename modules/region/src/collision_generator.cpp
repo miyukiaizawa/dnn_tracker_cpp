@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/region/collision_generator.h"
+﻿#include "dnn_tracker_cpp/region/collision_generator.h"
 
 namespace dnn {
 namespace region {
@@ -13,10 +13,12 @@ generate(collision_preset& _preset) {
     return contain_collision();
   case collision_preset::within_vertical:
     return within_vertical_collision();
-  case collision_preset::within_horicontal:
+  case collision_preset::within_horizontal:
     return within_horizontal_collision();
   case collision_preset::convex:
     return convex_collision();
+  case collision_preset::convex_or_within_horizontal:
+    return convex_or_within_horizontal_collision();
   case collision_preset::concavity:
     return concavity_collision();
   }
@@ -38,14 +40,17 @@ to_collision_preset(const std::tstring& str) {
   if (str.find(_T("contain")) != str.npos) {
     return collision_preset::contain;
   }
+  if (str.find(_T("convex_or_within_horizontal")) != str.npos) {
+    return collision_preset::convex_or_within_horizontal;
+  }
   if (str.find(_T("convex")) != str.npos) {
     return collision_preset::convex;
   }
   if (str.find(_T("none")) != str.npos) {
     return collision_preset::none;
   }
-  if (str.find(_T("within_horicontal")) != str.npos) {
-    return collision_preset::within_horicontal;
+  if (str.find(_T("within_horizontal")) != str.npos) {
+    return collision_preset::within_horizontal;
   }
   if (str.find(_T("within_vertical")) != str.npos) {
     return collision_preset::within_vertical;

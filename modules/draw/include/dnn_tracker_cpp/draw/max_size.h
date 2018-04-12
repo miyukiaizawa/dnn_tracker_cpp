@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef __DNN_TRACKER_CPP_DRAW_MAX_SIZE_H__
 #define __DNN_TRACKER_CPP_DRAW_MAX_SIZE_H__
 

@@ -1,4 +1,4 @@
-#ifndef __DNN_TRACKER_CPP_REGION_H__
+﻿#ifndef __DNN_TRACKER_CPP_REGION_H__
 #define __DNN_TRACKER_CPP_REGION_H__
 
 #include "dnn_tracker_cpp/region/boundary_box.h"

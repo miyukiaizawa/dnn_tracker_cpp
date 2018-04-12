@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #ifndef __DNN_TRACKER_CPP_OBJECT_DEPENDENT_OBJECT_H__
 #define __DNN_TRACKER_CPP_OBJECT_DEPENDENT_OBJECT_H__
 #include "dnn_tracker_cpp/region.h"
@@ -27,14 +27,18 @@ public:
 
   struct object_info {
     DNNTRR_API object_info();
-    bool is_certain_count;//ˆê’è‚ÌƒJƒEƒ“ƒg”‚©
-    bool is_certain_distance;//ˆê’è‚ÌˆÚ“®‹——£‚©
-    bool is_confirmed; //Šm’è‚µ‚½‚©
-    bool is_valid_move_direction;//—LŒø‚ÈˆÚ“®•ûŒü‚©
-    bool can_show;//•\¦‚Å‚«‚é‚©
-    bool can_alert; //Œx‚Å‚«‚é‚©
-    bool should_alert; //Œx‘ÎÛ‚©
-    bool is_stationary; //Ã~‚µ‚Ä‚¢‚é‚©
+    DNNTRR_API object_info(object_info& info);
+    DNNTRR_API object_info& operator = (object_info& info);
+
+    bool is_certain_count;//ä¸€å®šã®ã‚«ã‚¦ãƒ³ãƒˆæ•°ã‹
+    bool is_certain_distance;//ä¸€å®šã®ç§»å‹•è·é›¢ã‹
+    bool is_certain_probability;//ä¸€å®šã®ç§»å‹•è·é›¢ã‹
+    bool is_confirmed; //ç¢ºå®šã—ãŸã‹
+    bool is_valid_move_direction;//æœ‰åŠ¹ãªç§»å‹•æ–¹å‘ã‹
+    bool can_show;//è¡¨ç¤ºã§ãã‚‹ã‹
+    bool can_alert; //è­¦å‘Šã§ãã‚‹ã‹
+    bool should_alert; //è­¦å‘Šå¯¾è±¡ã‹
+    bool is_stationary; //é™æ­¢ã—ã¦ã„ã‚‹ã‹
   };
 
   struct alert_info {
@@ -43,10 +47,14 @@ public:
     };
 
     DNNTRR_API alert_info();
-    bool is_unchecked;//‰‰ñ‚ÌŒŸo‚©
-    bool is_alerted;//ŒŸoÏ‚İ‚©
-    std::chrono::time_point<std::chrono::system_clock> detection_time; //ŒŸoŠm’è
-    detection_state state; //ŒŸoó‘Ô
+    DNNTRR_API alert_info(alert_info& info);
+    DNNTRR_API alert_info& operator = (alert_info& info);
+
+    bool is_unchecked;//åˆå›ã®æ¤œå‡ºã‹
+    bool is_alerted;//æ¤œå‡ºæ¸ˆã¿ã‹
+    bool is_notifiable; //ãƒ¡ãƒƒã‚»ãƒ³ã‚¸ãƒ£ãƒ¼ã«é€šçŸ¥ã§ãã‚‹çŠ¶æ…‹ã‹ï¼ˆé€šçŸ¥æ¸ˆã¿ã‹ã©ã†ã‹ï¼‰
+    std::chrono::time_point<std::chrono::system_clock> detection_time; //æ¤œå‡ºç¢ºå®šæ™‚åˆ»
+    detection_state state; //æ¤œå‡ºçŠ¶æ…‹
   };
 
 public:
@@ -54,6 +62,9 @@ public:
   DNNTRR_API dependent_object(region::track_box box);
   DNNTRR_API dependent_object(region::inclusive_box box);
   DNNTRR_API virtual ~dependent_object();
+  DNNTRR_API dependent_object(dependent_object* obj);
+  DNNTRR_API dependent_object& operator = (dependent_object* obj);
+
 
   DNNTRR_API region::track_box& inner();
   DNNTRR_API region::track_box& outer();
@@ -70,6 +81,7 @@ public:
     appearance_ = prop;
   }
   DNNTRR_API virtual bool should_ignore() = 0;
+  DNNTRR_API virtual bool remove_unvalid_reference(object_ptrs_t& objects) = 0;
 
 
 protected:
@@ -86,10 +98,9 @@ protected:
   DNNTRR_API bool detect_collision(object_ptr_t& object);
 
   DNNTRR_API virtual bool find_reference(object_ptrs_t& objects,
-                              object_ptr_t& obj) = 0;
+                                         object_ptr_t& obj) = 0;
   DNNTRR_API virtual bool can_add_reference(object_ptrs_t& objects) = 0;
   DNNTRR_API virtual bool overwirte_referene(dependent_object* object) = 0;
-  DNNTRR_API virtual bool remove_unvalid_reference(object_ptrs_t& objects) = 0;
   DNNTRR_API virtual void erase_reference(object_ptr_t& object) = 0;
   DNNTRR_API virtual region::track_box make_outer() = 0;
   DNNTRR_API virtual void clear_reference() = 0;
@@ -98,6 +109,7 @@ public: //property
 
   Declear_Properties(bool, dependent_object, is_certain_count, IsCertainCount);
   Declear_Properties(bool, dependent_object, is_certain_distance, IsCertain_Distance);
+  Declear_Properties(bool, dependent_object, is_certain_probability, IsCertainProbability);
   Declear_Properties(bool, dependent_object, is_confirmed, IsConfirmed);
   Declear_Properties(bool, dependent_object, is_valid_move_direction, IsValidMoveDirection);
   Declear_Properties(bool, dependent_object, is_stationary, IsStationary);
@@ -106,6 +118,8 @@ public: //property
   Declear_Properties(bool, dependent_object, should_alert, ShouldAlert);
   Declear_Properties(bool, dependent_object, is_unchecked, isUnChecked);
   Declear_Properties(bool, dependent_object, is_alerted, IsAlerted);
+  Declear_Properties(bool, dependent_object, is_notifiable, IsNotifiable);
+
   Declear_Properties(alert_info::detection_state, dependent_object, state, State);
   Declear_Properties(std::chrono::time_point<std::chrono::system_clock>, dependent_object, detection_time, DetectionTime);
 
@@ -115,7 +129,7 @@ public: //property
 private:
   void set_properties();
 
-private:
+protected:
   object_info object_info_;
   alert_info alert_info_;
   region::inclusive_box self_;

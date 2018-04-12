@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "object_names.h"
 
 #ifndef __DNN_TRACKER_CPP_OBJECT_OBJECT_NAMES_IMPL_H__

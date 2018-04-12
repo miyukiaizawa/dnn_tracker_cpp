@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef __DNN_TRACKER_CPP_REGION_REGION_DISTANCE_H__
 #define __DNN_TRACKER_CPP_REGION_REGION_DISTANCE_H__
 

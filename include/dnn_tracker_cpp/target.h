@@ -1,4 +1,4 @@
-#ifndef __DNN_TRACKER_CPP_TARGET_H__
+﻿#ifndef __DNN_TRACKER_CPP_TARGET_H__
 #define __DNN_TRACKER_CPP_TARGET_H__
 
 #include "dnn_tracker_cpp/target/target_direction.h"

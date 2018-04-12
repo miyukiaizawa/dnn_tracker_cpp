@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/region/collision.h"
+Ôªø#include "dnn_tracker_cpp/region/collision.h"
 
 namespace dnn {
 namespace region {
@@ -68,7 +68,7 @@ check_gather_or_less(state& state, int v1, int v2) {
   case state::less:
     return less(v1, v2);
   case state::any:
-    return less(v1, v2) || greater(v1, v2);
+    return less(v1, v2) || greater(v1, v2) || v1 == v2;
   case state::ignore:
     return true;
   }
@@ -87,7 +87,7 @@ any_collision() {
                    collision::state::any);
 }
 
-//Å†:should be set to parent object (car)
+//‚ñ°:should be set to parent object (car)
 collision
 contain_collision() {
   return collision(collision::state::less,
@@ -99,9 +99,9 @@ contain_collision() {
 //= : collision is avairable only top & bottom side
 collision
 within_vertical_collision() {
-  return collision(collision::state::any,
+  return collision(collision::state::greater,
                    collision::state::less,
-                   collision::state::any,
+                   collision::state::less,
                    collision::state::greater);
 }
 
@@ -109,12 +109,12 @@ within_vertical_collision() {
 collision
 within_horizontal_collision() {
   return collision(collision::state::less,
-                   collision::state::any,
                    collision::state::greater,
-                   collision::state::any);
+                   collision::state::greater,
+                   collision::state::less);
 }
 
-//ì  : should be set to parent object which is viechle which people is riding
+//Âá∏ : should be set to parent object which is viechle which people is riding
 collision
 convex_collision() {
   return collision(collision::state::less,    //self x is less then another x
@@ -123,7 +123,17 @@ convex_collision() {
                    collision::state::greater);//self h is greater then another h
 }
 
-//âö
+//Âá∏ : should be set to parent object which is viechle which people is riding
+collision
+convex_or_within_horizontal_collision() {
+  return collision(collision::state::less,
+                   collision::state::greater,
+                   collision::state::greater,
+                   collision::state::any);
+}
+
+
+//Âáπ
 collision
 concavity_collision() {
   return collision(collision::state::less,

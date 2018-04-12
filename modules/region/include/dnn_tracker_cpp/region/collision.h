@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef __DNN_TRACKER_CPP_REGION_COLLISION_H__
 #define __DNN_TRACKER_CPP_REGION_COLLISION_H__
 #include "dnn_tracker_cpp/core.h"

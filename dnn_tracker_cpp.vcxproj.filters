@@ -176,9 +176,6 @@
     <ClCompile Include="modules\target\src\target_direction.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="modules\target\src\target_object.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="modules\target\src\target_object_judgementer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -219,6 +216,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="modules\core\src\utils.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\target\src\target_object.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

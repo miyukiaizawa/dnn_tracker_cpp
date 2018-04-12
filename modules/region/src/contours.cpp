@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/region/contours.h"
+ï»¿#include "dnn_tracker_cpp/region/contours.h"
 #include "dnn_tracker_cpp/region/distance.h"
 
 namespace dnn {
@@ -127,10 +127,10 @@ contours::iterator
 contours::
 find_closest_area(cv::Point2f pt) {
 
-  //“_‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‘½ŠpŒ`—Ìˆæ‚ğŒŸo
+  //ç‚¹ãŒå«ã¾ã‚Œã¦ã„ã‚‹å¤šè§’å½¢é ˜åŸŸã‚’æ¤œå‡º
   auto areas = find_areas_including_pt(pt);
 
-  //‘½ŠpŒ`—Ìˆæ‚Ì’†‚©‚çdS‚Æ‚Ì‹——£‚ªÅ‚à‹ß‚µ‚¢—Ìˆæ‚ğŒŸõ
+  //å¤šè§’å½¢é ˜åŸŸã®ä¸­ã‹ã‚‰é‡å¿ƒã¨ã®è·é›¢ãŒæœ€ã‚‚è¿‘ã—ã„é ˜åŸŸã‚’æ¤œç´¢
   int min_dist = INT_MAX;
   iterator it = data_.end();
   for (auto convex = areas.begin(); convex != areas.end(); ++convex) {

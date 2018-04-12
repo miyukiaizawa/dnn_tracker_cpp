@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef __DNN_TRACKER_CPP_REGION_TRACK_BOXES_H__
 #define __DNN_TRACKER_CPP_REGION_TRACK_BOXES_H__
 #include "dnn_tracker_cpp/region/track_box.h"

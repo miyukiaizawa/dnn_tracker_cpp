@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/info/detection_info.h"
+﻿#include "dnn_tracker_cpp/info/detection_info.h"
 
 namespace dnn {
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef __YOLO_V2_DETECTOR_H__
 #define __YOLO_V2_DETECTOR_H__
 #include "opencv2\opencv.hpp"

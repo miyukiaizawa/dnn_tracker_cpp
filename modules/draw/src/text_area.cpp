@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/draw/text_area.h"
+﻿#include "dnn_tracker_cpp/draw/text_area.h"
 
 namespace dnn {
 
@@ -59,14 +59,14 @@ get_text_size(const std::tstring& text, int* baseline) {
 
 int
 text_area::
-line_height() { return (int)(text_area_.height / (double)line_count_); }
+line_height() const { return (int)(text_area_.height / (double)line_count_); }
 
 int
 text_area::
-base_line() { return base_line_; }
+base_line() const { return base_line_; }
 
 int
 text_area::
-next_line_offset() { return line_height() + base_line(); }
+next_line_offset() const { return line_height() + base_line(); }
 
 }

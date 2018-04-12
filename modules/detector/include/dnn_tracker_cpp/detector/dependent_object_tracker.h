@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef __DNN_TRACKER_CPP_DEPENDENT_OBJECT_TRACKER_H__
 #define __DNN_TRACKER_CPP_DEPENDENT_OBJECT_TRACKER_H__
 #include "dnn_tracker_cpp/object/dependent_object_ptrs.h"

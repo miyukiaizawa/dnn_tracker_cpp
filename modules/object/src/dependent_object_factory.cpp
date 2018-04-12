@@ -1,4 +1,4 @@
-#include "dnn_tracker_cpp/object/dependent_object_factory.h"
+﻿#include "dnn_tracker_cpp/object/dependent_object_factory.h"
 #include "dnn_tracker_cpp/object/dependent_object.h"
 #include "dnn_tracker_cpp/object/dependent_object_ptrs.h"
 #include "dnn_tracker_cpp/object/child_object.h"
@@ -36,8 +36,8 @@ generate(const region::boundary_box &box,
   if (!targets.find(name, target)) {
     return nullptr;
   }
-
-  auto trackbox = region::track_box(box, region::collision_generator::generate(target.collision));
+  auto collision = target.collision();
+  auto trackbox = region::track_box(box, region::collision_generator::generate(collision));
   return generate(trackbox, object_names, targets);
 }
 
